@@ -19,10 +19,10 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: pnpm install
+        run: yarn install
 
       - name: Install dependencies
-        run: pnpm format
+        run: yarn format
 
   publish:
     needs: [ 'checkout' ]
@@ -41,13 +41,13 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: pnpm install
+        run: yarn install
 
       - name: Format Code
-        run: pnpm format
+        run: yarn format
 
       - name: Build the package
-        run: pnpm build
+        run: yarn build
 
       - name: Bump version & push
         run: |
