@@ -5,7 +5,7 @@
   "license": "Apache",
   "scripts": {
     "build": "tsc -p . && tsc-alias",
-    "format": "prettier --write 'src/**/*.ts"
+    "format": "prettier --write 'src/**/*.ts'"
   },
   "dependencies": {
     "@google-cloud/storage": "^7.1.0",
