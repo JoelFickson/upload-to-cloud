@@ -2,7 +2,7 @@
   "name": "cloud-send",
   "version": "1.0.0",
   "author": "Joel Fickson <hello@joelfickson.com>",
-  "license": "  Apache License",
+  "license": "Apache",
   "scripts": {
     "build": "tsc -p . && tsc-alias",
     "format": "prettier --write 'src/**/*.ts"
