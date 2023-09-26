@@ -1,2 +1,5 @@
-export * from "@utils/getSecureFileUrl";
-export * from "@utils/uploadToGoogleCloud";
+import uploadToGoogleCloudMiddleware from '@middleware/uploadToGoogleCloudMiddleware';
+
+import uploadToGoogleCloud from '@utils/uploadToGoogleCloud';
+
+export { uploadToGoogleCloudMiddleware, uploadToGoogleCloud };
