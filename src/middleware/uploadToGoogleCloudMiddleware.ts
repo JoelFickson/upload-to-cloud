@@ -1,6 +1,7 @@
-import {NextFunction, Request, Response} from "express";
-import {getBucket} from "@utils/getBucket";
-import uploadToGoogleCloudStorage from "@utils/uploadToGoogleCloud";
+import { NextFunction, Request, Response } from 'express';
+import { getBucket } from '@utils/getBucket';
+import uploadToGoogleCloudStorage from '@utils/uploadToGoogleCloud';
+
 
 /**
  * Middleware for handling file uploads and storing them in Google Cloud Storage.
@@ -21,32 +22,32 @@ import uploadToGoogleCloudStorage from "@utils/uploadToGoogleCloud";
  */
 
 const uploadFileMiddleware =
-  (bucketName: string): Function =>
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const file = req.myFile;
+	(bucketName: string): Function =>
+		async (req: Request, res: Response, next: NextFunction) => {
+			try {
+				const file = req.myFile;
 
-      //TODO :: Check file if its an instance of UploadedFile
+				//TODO :: Check file if its an instance of UploadedFile
 
-      console.info("UPLOADING:: ", file.name, " to ", bucketName, " bucket ");
+				console.info('UPLOADING:: ', file.name, ' to ', bucketName, ' bucket ');
 
-      const bucket = getBucket(bucketName);
+				const bucket = getBucket(bucketName);
 
-      const response = await uploadToGoogleCloudStorage(file, bucket);
+				const response = await uploadToGoogleCloudStorage(file, bucket);
 
-      if (!response) {
-        return res.status(400).send({
-          error: true,
-          message: "There was an error uploading picture",
-        });
-      }
+				if (!response) {
+					return res.status(400).send({
+						error: true,
+						message: 'There was an error uploading picture',
+					});
+				}
 
-      req.fileUrl = response;
+				req.fileUrl = response;
 
-      next();
-    } catch (error) {
-      throw error;
-    }
-  };
+				next();
+			} catch (error) {
+				throw error;
+			}
+		};
 
 export default uploadFileMiddleware;
