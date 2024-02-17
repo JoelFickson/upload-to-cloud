@@ -1,5 +1,6 @@
-import {GetSignedUrlConfig} from "@google-cloud/storage/build/src/file";
-import {storage} from "@utils/getBucket";
+import { GetSignedUrlConfig } from '@google-cloud/storage/build/src/file';
+import { storage } from '@utils/getBucket';
+
 
 /**
  * Generates a signed URL for accessing an object in Google Cloud Storage.
@@ -15,22 +16,22 @@ import {storage} from "@utils/getBucket";
  */
 
 async function getSignedUrl(
-  bucketName: string,
-  fileName: string,
-  duration: number = 15,
+	bucketName: string,
+	fileName: string,
+	duration: number = 15,
 ): Promise<string> {
-  const options: GetSignedUrlConfig = {
-    version: "v4",
-    action: "read",
-    expires: Date.now() + duration * 60 * 1000,
-  };
+	const options: GetSignedUrlConfig = {
+		version: 'v4',
+		action: 'read',
+		expires: Date.now() + duration * 60 * 1000,
+	};
 
-  const [url] = await storage
-    .bucket(bucketName)
-    .file(fileName)
-    .getSignedUrl(options);
+	const [url] = await storage
+		.bucket(bucketName)
+		.file(fileName)
+		.getSignedUrl(options);
 
-  return url;
+	return url;
 }
 
 export default getSignedUrl;
